@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }}
+  namespace: {{ .Values.application.namespace}}
+  labels:
+    app: {{ .Values.release.name }}
+    chart: {{ template "boh-dev-deploy.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.release.name }}
+    release: {{ .Release.Name }}

@@ -1,0 +1,45 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.application.namespace}}
+  labels:
+    app: {{ .Values.release.name }}
+    chart: {{ template "bohemian-dev-deploy.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.release.name }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.release.name }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}     
+          ports:
+            - nodePort: 5844
+              containerPort: {{ .Values.service.internalPort }}
+              targetPort: 80
+              protocol: TCP
+              name: http
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.deployment.path | quote}}
+              port: http
+              initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.deployment.path | quote}}
+              port: http
+              initialDelaySeconds: 30
+      imagePullSecrets:
+{{ toYaml .Values.image.secrets | indent 10 }}
+
