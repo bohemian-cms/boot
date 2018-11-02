@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.application.namespace}}
   labels:
     app: {{ .Values.release.name }}
-    chart: {{ template "boh-dev-deploy.chart" . }}
+    chart: {{ template "bohemian-cms-deploy" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
