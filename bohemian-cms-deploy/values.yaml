@@ -19,3 +19,6 @@ ingress:
 
 application:
   namespace: bohemian-cms-deploy
+
+deployment:
+  path: /
