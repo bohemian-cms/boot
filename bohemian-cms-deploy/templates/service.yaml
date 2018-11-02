@@ -6,8 +6,6 @@ metadata:
   labels:
     app: {{ .Values.release.name }}
     chart: {{ template "bohemian-cms-deploy" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -16,5 +14,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ .Values.release.name }}
+    app: {{ .Release.Name }}
     release: {{ .Release.Name }}
