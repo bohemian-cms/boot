@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.service.name }}
   namespace: {{ .Values.application.namespace}}
   labels:
-    app: {{ .Values.release.name }}
+    app: {{ .Release.Name }}
     chart: {{ template "bohemian-cms-deploy" . }}
 spec:
   type: {{ .Values.service.type }}
