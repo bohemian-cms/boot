@@ -1,0 +1,5 @@
+node_modules
+k8s/bin/generate-certmanager.sh
+k8s/bin/ns-bohemian-cms-dev.json
+k8s/bin/setup-acr-aks-auth.sh
+k8s/scripts/generate-sa-clouddns.sh
