@@ -18,7 +18,7 @@ ingress:
   enabled: true
 
 application:
-  namespace: bohemian-cms-deploy
+  namespace: development
 
 deployment:
   path: /
