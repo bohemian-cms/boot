@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bohemian-cms-dev
+  name:  bohemian-cms-dev
   namespace: {{ .Values.application.namespace}}
   labels:
     app: bohemian-cms-dev
