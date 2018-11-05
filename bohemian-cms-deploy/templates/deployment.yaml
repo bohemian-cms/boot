@@ -1,22 +1,22 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: Bohemian-cms-dev
+  name: bohemian-cms-dev
   namespace: {{ .Values.application.namespace}}
   labels:
-    app: Bohemian-cms-dev
+    app: bohemian-cms-dev
    
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: Bohemian-cms-dev
-      release: Bohemian-cms-dev
+      app: bohemian-cms-dev
+      release: bohemian-cms-dev
   template:
     metadata:
       labels:
-        app: Bohemian-cms-dev
-        release: Bohemian-cms-dev
+        app: bohemian-cms-dev
+        release: bohemian-cms-dev
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}     
           ports:
             - nodePort: 5844
-              containerPort: {{ .Values.service.internalPort }}
+              containerPort: 1985
               targetPort: 80
               protocol: TCP
               name: http
