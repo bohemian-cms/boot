@@ -1,22 +1,22 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ .Release.name }}
+  name: Bohemian-cms-dev
   namespace: {{ .Values.application.namespace}}
   labels:
-    app: {{ .Release.name }}
+    app: Bohemian-cms-dev
    
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.name }}
-      release: {{ .Release.Name }}
+      app: Bohemian-cms-dev
+      release: Bohemian-cms-dev
   template:
     metadata:
       labels:
-        app: {{ .Release.name }}
-        release: {{ .Release.Name }}
+        app: Bohemian-cms-dev
+        release: Bohemian-cms-dev
     spec:
       containers:
         - name: {{ .Chart.Name }}
